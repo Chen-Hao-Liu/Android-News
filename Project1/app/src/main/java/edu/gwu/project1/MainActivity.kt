@@ -29,14 +29,17 @@ class MainActivity : AppCompatActivity() {
 
         searchButton.setOnClickListener { v: View ->
             val intent = Intent(this, SourceSelectionActivity::class.java)
+            // Sends the input string to the sources page
             intent.putExtra("ITEM", search.getText().toString())
             startActivity(intent)
         }
 
         viewMap.setOnClickListener { v: View ->
+            // To be implemented
         }
 
         viewHead.setOnClickListener { v: View ->
+            // To be implemented
         }
 
         search.addTextChangedListener(textWatcher)
@@ -48,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            // Enable button after input detected in search bar
             val searchInput: String = search.getText().toString()
             val enableButton: Boolean = searchInput.isNotEmpty()
             searchButton.isEnabled = enableButton

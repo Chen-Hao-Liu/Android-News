@@ -17,8 +17,10 @@ class SourceSelectionActivity : AppCompatActivity() {
         val intent = getIntent()
         val searchItem: String = intent.getStringExtra("ITEM")!!
 
+        // Set new search item for title
         title = "Search for $searchItem"
 
+        // Drop down menu
         val category_spinner: Spinner = findViewById(R.id.category_spinner)
 
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -41,6 +43,7 @@ class SourceSelectionActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
+    // List of fake sources
     fun getFakeSources(): List<Source> {
         return listOf(
             Source(
