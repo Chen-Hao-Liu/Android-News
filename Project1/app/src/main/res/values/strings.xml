@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Android News</string>
+    <string name="searchTitle">Term Search</string>
+    <string name="search">Search</string>
+    <string name="searchButton">Search</string>
+    <string name="localNews">News by Location</string>
+    <string name="viewMap">View Map</string>
+    <string name="topHead">Top Headlines</string>
+    <string name="viewHead">View Top Headlines</string>
+    <string name="category">Category</string>
+    <string-array name="category_array">
+        <item>Business</item>
+        <item>Entertainment</item>
+        <item>General</item>
+        <item>Health</item>
+        <item>Science</item>
+        <item>Sports</item>
+        <item>Technology</item>
+    </string-array>
+    <string name="skip">SKIP (SEARCH ALL SOURCES)</string>
+</resources>
