@@ -3,6 +3,7 @@ package edu.gwu.project1
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -36,6 +37,8 @@ class MainActivity : AppCompatActivity() {
 
         viewMap.setOnClickListener { v: View ->
             // To be implemented
+            val intent = Intent(this, MapsActivity::class.java)
+            startActivity(intent)
         }
 
         viewHead.setOnClickListener { v: View ->

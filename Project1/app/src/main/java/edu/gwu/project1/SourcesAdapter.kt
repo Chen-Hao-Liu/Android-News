@@ -35,7 +35,7 @@ class SourcesAdapter(val sources: List<Source>) : RecyclerView.Adapter<SourcesAd
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val source: TextView = itemView.findViewById(R.id.source)
-        val description: TextView = itemView.findViewById(R.id.description)
+        val source: TextView = itemView.findViewById(R.id.newsHead)
+        val description: TextView = itemView.findViewById(R.id.summary)
     }
 }
