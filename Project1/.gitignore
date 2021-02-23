@@ -12,3 +12,6 @@
 /captures
 .externalNativeBuild
 .cxx
+/app/src/main/res/values/news_api.xml
+
+
