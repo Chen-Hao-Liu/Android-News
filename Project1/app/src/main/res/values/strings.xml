@@ -9,13 +9,14 @@
     <string name="viewHead">View Top Headlines</string>
     <string name="category">Category</string>
     <string-array name="category_array">
-        <item>Business</item>
-        <item>Entertainment</item>
         <item>General</item>
+        <item>Entertainment</item>
+        <item>Business</item>
         <item>Health</item>
         <item>Science</item>
         <item>Sports</item>
         <item>Technology</item>
     </string-array>
     <string name="skip">SKIP (SEARCH ALL SOURCES)</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
