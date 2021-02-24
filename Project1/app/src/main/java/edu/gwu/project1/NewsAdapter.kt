@@ -35,7 +35,18 @@ class NewsAdapter(val articles: List<Article>, val mContext: Context) : Recycler
         // for position indicated -- override the UI elements with the correct data
         val currentArticle = articles[position]
 
-        Picasso.get().load(currentArticle.urlToImage).into(holder.newsImage)
+        // Picasso.get().load(currentArticle.urlToImage).into(holder.newsImage)
+        if(!currentArticle.urlToImage.isNullOrBlank()){
+            Picasso
+                .get()
+                .setIndicatorsEnabled(true)
+
+            Picasso
+                .get()
+                .load(currentArticle.urlToImage)
+                .into(holder.newsImage)
+        }
+
         holder.newsHead.text = currentArticle.title
         holder.newsSource.text = currentArticle.name
         holder.summary.text = currentArticle.description
