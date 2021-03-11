@@ -2,11 +2,11 @@
     <string name="app_name">Android News</string>
     <string name="searchTitle">Term Search</string>
     <string name="search">Search</string>
-    <string name="searchButton">Search</string>
+    <string name="searchButton">SEARCH</string>
     <string name="localNews">News by Location</string>
-    <string name="viewMap">View Map</string>
+    <string name="viewMap">VIEW MAP</string>
     <string name="topHead">Top Headlines</string>
-    <string name="viewHead">View Top Headlines</string>
+    <string name="viewHead">VIEW TOP HEADLINES</string>
     <string name="category">Category</string>
     <string-array name="category_array">
         <item>General</item>
@@ -19,4 +19,10 @@
     </string-array>
     <string name="skip">SKIP (SEARCH ALL SOURCES)</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_topHeadlines">Top Headlines</string>
+    <string name="title_activity_results">Results</string>
+    <string name="newsHead">Android Central</string>
+    <string name="summary">Android is a mobile operating system developed by Google, based on a modified version of the Linux kernel and other open source software and designed primarily for touchscreen mobile devices such as smartphones and tablets.</string>
+    <string name="newsSource">New York Times</string>
+    <string name="newLocation">Location</string>
 </resources>

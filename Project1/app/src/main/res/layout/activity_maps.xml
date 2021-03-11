@@ -47,7 +47,7 @@ tools:context=".MapsActivity">
                 android:id="@+id/newLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
-                android:text="Location"
+                android:text="@string/newLocation"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -64,5 +64,16 @@ tools:context=".MapsActivity">
                 app:srcCompat="@drawable/ic_close" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
+    <ProgressBar
+        android:id="@+id/mapProgress"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,11 +25,11 @@ class ArticlesManager {
         okHttpClient = builder.build()
     }
 
-    fun retrieveArticles(searchTerm: String, apiKey: String): List<Article> {
+    fun retrieveArticles(articleURL: String): List<Article> {
         val request =
             Request.Builder()
                 .get()
-                .url("https://newsapi.org/v2/everything?qInTitle=$searchTerm&apiKey=$apiKey")
+                .url(articleURL)
                 .build()
 
         val response: Response = okHttpClient.newCall(request).execute()

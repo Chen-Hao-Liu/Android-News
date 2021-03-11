@@ -32,6 +32,12 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"></activity>
+        <activity
+            android:name=".TopHeadlinesActivity"
+            android:label="@string/title_activity_topHeadlines"></activity>
+        <activity
+            android:name=".ResultsActivity"
+            android:label="@string/title_activity_results"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
