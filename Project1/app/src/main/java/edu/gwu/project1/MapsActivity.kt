@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageButton
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
@@ -33,11 +34,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var closeBtn: ImageButton
     private lateinit var articlesManager: ArticlesManager
     private lateinit var apiKey: String
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
 
+        progressBar = findViewById(R.id.mapProgress)
         recyclerView = findViewById(R.id.horiRecycler)
         resultsFor = findViewById(R.id.newLocation)
         cardView = findViewById(R.id.newsCard)
@@ -45,6 +48,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         apiKey = getString(R.string.news_KEY)
 
         title = "News by Location"
+
+        // progress bar for loading map
+        progressBar.visibility = View.VISIBLE
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -71,11 +77,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         articlesManager = ArticlesManager()
+        // hide progressBar
+        progressBar.visibility = View.INVISIBLE
 
         val preferences = getSharedPreferences("android-news", Context.MODE_PRIVATE)
 
         // load previous preference if it exists
         if(preferences.contains("country")){
+            // show progressBar
+            progressBar.visibility = View.VISIBLE
+
             mMap.clear()
             // load saved preferences
             val pA = preferences.getString("postalAddress", "")!!
@@ -91,6 +102,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // When user moves marker
         mMap.setOnMapLongClickListener { coords: LatLng ->
+            // show progressBar
+            progressBar.visibility = View.VISIBLE
+
             mMap.clear()
 
             // Perform geocoding on separate thread
@@ -139,6 +153,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                             Toast.LENGTH_LONG
                         )
                         toast.show()
+
+                        // hide progressBar
+                        progressBar.visibility = View.INVISIBLE
                     }
                 }
             }
@@ -173,18 +190,49 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         // Retrieve list of articles from API but do so on separate thread
         doAsync{
             try{
-                val articles = articlesManager.retrieveArticles(searchTerm, apiKey)
+                val articleURL = "https://newsapi.org/v2/everything?qInTitle=$searchTerm&apiKey=$apiKey"
+                val articles = articlesManager.retrieveArticles(articleURL)
 
-                // Display card contents through recyclerview
-                runOnUiThread{
-                    cardView.visibility = View.VISIBLE
-                    resultsFor.setText("Results for $searchTerm");
-                    val adapter = NewsAdapter(articles, this@MapsActivity)
-                    recyclerView.adapter = adapter
-                    recyclerView.layoutManager = LinearLayoutManager(this@MapsActivity, LinearLayoutManager.HORIZONTAL, false)
+                if (articles.isNotEmpty()) {
+                    // Display card contents through recyclerview
+                    runOnUiThread {
+                        cardView.visibility = View.VISIBLE
+                        resultsFor.setText("Results for $searchTerm");
+                        val adapter = NewsAdapter(articles.toMutableList(), this@MapsActivity)
+                        recyclerView.adapter = adapter
+                        recyclerView.layoutManager = LinearLayoutManager(
+                            this@MapsActivity,
+                            LinearLayoutManager.HORIZONTAL,
+                            false
+                        )
+
+                        // hide progressBar
+                        progressBar.visibility = View.INVISIBLE
+                    }
+                }else{
+                    runOnUiThread {
+                        Log.d("MapsActivity", "News API search returned no results!")
+                        val toast = Toast.makeText(
+                            this@MapsActivity,
+                            "No results for location!",
+                            Toast.LENGTH_LONG
+                        )
+                        toast.show()
+
+                        // hide progressBar
+                        progressBar.visibility = View.INVISIBLE
+                    }
                 }
             }catch(exception: java.lang.Exception){
                 Log.e("MapsActivity", "News API failed!", exception)
+                Toast.makeText(
+                    this@MapsActivity,
+                    "News API failed! : $exception",
+                    Toast.LENGTH_LONG
+                ).show()
+
+                // hide progressBar
+                progressBar.visibility = View.INVISIBLE
             }
         }
 

@@ -1,12 +1,15 @@
 package edu.gwu.project1
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class SourcesAdapter(val sources: List<Source>) : RecyclerView.Adapter<SourcesAdapter.ViewHolder>() {
+class SourcesAdapter(val sources: List<Source>, val mContext: Context, val searchTerm: String) : RecyclerView.Adapter<SourcesAdapter.ViewHolder>() {
     override fun getItemCount(): Int {
         // How many rows (total) do you want the adapter to render?
         return sources.size
@@ -30,8 +33,24 @@ class SourcesAdapter(val sources: List<Source>) : RecyclerView.Adapter<SourcesAd
         // for position indicated -- override the UI elements with the correct data
         val currentSource = sources[position]
 
+        /*
+        val intent = Intent(this, SourceSelectionActivity::class.java)
+        // Sends the input string to the sources page
+        intent.putExtra("ITEM", search.getText().toString())
+         */
+
         holder.source.text = currentSource.name
         holder.description.text = currentSource.description
+
+        // Visit url after click on card
+        holder.itemView.setOnClickListener { v: View? ->
+            val intent = Intent(mContext, ResultsActivity::class.java)
+            // Sends the input string to the sources page
+            intent.putExtra("newsID", currentSource.id)
+            intent.putExtra("newsSource", currentSource.name)
+            intent.putExtra("searchTerm", searchTerm)
+            mContext.startActivity(intent)
+        }
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

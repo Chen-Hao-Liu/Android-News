@@ -28,7 +28,7 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Android Central" />
+                tools:text="@string/newsHead" />
 
             <TextView
                 android:id="@+id/summary"
@@ -37,7 +37,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/newsHead"
-                tools:text="Android is a mobile operating system developed by Google, based on a modified version of the Linux kernel and other open source software and designed primarily for touchscreen mobile devices such as smartphones and tablets." />
+                tools:text="@string/summary" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

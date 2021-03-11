@@ -11,7 +11,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
-class NewsAdapter(val articles: List<Article>, val mContext: Context) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
+class NewsAdapter(val articlesList: MutableList<Article>, val mContext: Context) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
+    private var articles: MutableList<Article> = articlesList
+
+    fun updateAdapter(newList : List<Article>) {
+        for(article in newList){
+            articles.add(article)
+        }
+    }
+
     override fun getItemCount(): Int {
         // How many rows (total) do you want the adapter to render?
         return articles.size
